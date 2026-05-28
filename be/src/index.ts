@@ -1,5 +1,7 @@
 import { Simulation } from "./simulation";
 import { createServer } from "./server";
+import "dotenv/config";
+
 
 /**
  * Load environment variables
