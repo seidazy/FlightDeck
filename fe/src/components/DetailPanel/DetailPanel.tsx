@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
-import type { PlaneDetailed } from "../types";
+import type { PlaneDetailed } from "../../types";
+import "./DetailPanel.scss";
 
 type Props = {
   details: PlaneDetailed;

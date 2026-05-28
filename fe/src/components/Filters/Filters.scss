@@ -1,0 +1,32 @@
+@use '../../styles/variables' as *;
+
+.filters {
+  display: flex;
+  gap: 6px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.filter-chip {
+  background: $bg-tertiary;
+  border: 1px solid transparent;
+  color: $text-secondary;
+  padding: 4px 12px;
+  border-radius: $radius-pill;
+  font-size: 0.75rem;
+  cursor: pointer;
+  text-transform: capitalize;
+  transition: all 0.15s;
+
+  &:hover {
+    color: $text-primary;
+  }
+
+  &.active {
+    background: $accent;
+    color: $bg-secondary;
+    font-weight: 600;
+  }
+}

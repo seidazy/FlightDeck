@@ -1,4 +1,5 @@
-import type { ConnectionStatus } from "../hooks/usePlanesBasic";
+import type { ConnectionStatus } from "../../hooks/usePlanesBasic";
+import "./StatusIndicator.scss";
 
 const labels: Record<ConnectionStatus, string> = {
   connecting: "Connecting...",

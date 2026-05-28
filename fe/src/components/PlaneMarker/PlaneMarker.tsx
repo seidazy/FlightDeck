@@ -1,8 +1,8 @@
 import { useEffect, useRef, useCallback } from "react";
 import { useMap } from "react-leaflet";
 import L from "leaflet";
-import type { PlaneBasic } from "../types";
-import { wrapLng } from "../utils/geo";
+import type { PlaneBasic } from "../../types";
+import { wrapLng } from "../../utils/geo";
 
 function createPlaneIcon(color: string, heading: number, selected: boolean) {
   const size = selected ? 32 : 24;

@@ -1,0 +1,22 @@
+@use '../../styles/variables' as *;
+
+.map {
+  flex: 1;
+  z-index: 1;
+  background: $bg-primary;
+}
+
+.plane-tooltip {
+  background: #{$bg-secondary}ee !important;
+  border: 1px solid $border !important;
+  color: $text-primary !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  padding: 4px 8px !important;
+  border-radius: 6px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+
+  &::before {
+    border-top-color: $border !important;
+  }
+}

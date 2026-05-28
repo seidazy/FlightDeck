@@ -1,0 +1,31 @@
+@use '../../styles/variables' as *;
+
+.loader-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #{$bg-primary}cc;
+  gap: 16px;
+}
+
+.loader-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid $bg-tertiary;
+  border-top-color: $accent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loader-text {
+  font-size: 0.9rem;
+  color: $text-secondary;
+}

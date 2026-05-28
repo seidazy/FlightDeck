@@ -1,0 +1,71 @@
+@use './styles/variables' as *;
+
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  background: $bg-primary;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background: $bg-secondary;
+  border-bottom: 1px solid $border;
+  z-index: 1000;
+
+  h1 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: $accent;
+  }
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.plane-count {
+  font-size: 0.85rem;
+  color: $text-secondary;
+  background: $bg-tertiary;
+  padding: 4px 12px;
+  border-radius: $radius-pill;
+}
+
+.sidebar-toggle {
+  background: none;
+  border: none;
+  color: $text-secondary;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: $radius-sm;
+
+  &:hover {
+    color: #fff;
+    background: $bg-tertiary;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar {
+    padding: 10px 16px;
+
+    h1 {
+      font-size: 1rem;
+    }
+  }
+}

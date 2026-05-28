@@ -1,5 +1,6 @@
 import { Component } from "react";
 import type { ReactNode, ErrorInfo } from "react";
+import "./ErrorBoundary.scss";
 
 type Props = { children: ReactNode; fallback?: ReactNode };
 type State = { hasError: boolean };

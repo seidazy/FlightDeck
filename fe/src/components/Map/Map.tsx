@@ -1,7 +1,8 @@
 import { useEffect, useRef, useCallback } from "react";
 import { MapContainer, TileLayer, useMap } from "react-leaflet";
-import PlaneMarker from "./PlaneMarker";
-import type { PlaneBasic } from "../types";
+import PlaneMarker from "../PlaneMarker";
+import type { PlaneBasic } from "../../types";
+import "./Map.scss";
 
 type Props = {
   planes: PlaneBasic[];

@@ -1,0 +1,27 @@
+@use '../../styles/variables' as *;
+
+.error-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 32px;
+  color: $text-secondary;
+  font-size: 0.9rem;
+
+  button {
+    background: $bg-tertiary;
+    color: $accent;
+    border: 1px solid $accent;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+
+    &:hover {
+      background: $accent;
+      color: $bg-secondary;
+    }
+  }
+}
