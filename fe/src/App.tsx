@@ -5,6 +5,7 @@ import Map from "./components/Map";
 import DetailPanel from "./components/DetailPanel";
 import StatusIndicator from "./components/StatusIndicator";
 import Loader from "./components/Loader";
+import ErrorBoundary from "./components/ErrorBoundary";
 import { computeHeading } from "./utils/geo";
 import "leaflet/dist/leaflet.css";
 import "./App.css";
@@ -47,15 +48,19 @@ export default function App() {
 
       {!hasData && <Loader />}
 
-      <Map
-        planes={planes}
-        headings={headings}
-        selectedId={selectedId}
-        onSelect={toggleSelect}
-      />
+      <ErrorBoundary>
+        <Map
+          planes={planes}
+          headings={headings}
+          selectedId={selectedId}
+          onSelect={toggleSelect}
+        />
+      </ErrorBoundary>
 
       {details && (
-        <DetailPanel details={details} onClose={() => setSelectedId(null)} />
+        <ErrorBoundary>
+          <DetailPanel details={details} onClose={() => setSelectedId(null)} />
+        </ErrorBoundary>
       )}
     </div>
   );
