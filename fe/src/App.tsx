@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback, useMemo } from "react";
+import {useState, useRef, useCallback, useMemo, useEffect} from "react";
 import { usePlanesBasic } from "./hooks/usePlanesBasic";
 import { usePlaneDetails } from "./hooks/usePlaneDetails";
 import Map from "./components/Map";
@@ -19,6 +19,29 @@ export default function App() {
   const [filter, setFilter] = useState<AltitudeFilter>("all");
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const details = usePlaneDetails(selectedId);
+  const [histories, setHistories] = useState([]);
+
+  useEffect(() => {
+    if (planes.length === 0) return;
+
+    setHistories((prev) => {
+      const next = {...prev}
+
+      let changed = false
+
+      for (const p of planes) {
+        const trail = next[p.id] ?? [];
+        const last = trail[trail.length - 1];
+
+        if (!last || last[0] !== p.latitude || last[1] !== p.longitude) {
+          next[p.id] = [...trail, [p.latitude, p.longitude]];
+          changed = true
+        }
+      }
+
+      return changed ? next : prev;
+    })
+  }, [planes])
 
   const prevPositions = useRef<Record<string, { lat: number; lng: number }>>({});
   const headingsRef = useRef<Record<string, number>>({});
@@ -76,6 +99,7 @@ export default function App() {
           <Map
             planes={filteredPlanes}
             headings={headings}
+            histories={histories}
             selectedId={selectedId}
             onSelect={toggleSelect}
           />

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useCallback } from "react";
-import { MapContainer, TileLayer, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, Polyline, useMap } from "react-leaflet";
 import PlaneMarker from "../PlaneMarker";
 import type { PlaneBasic } from "../../types";
 import "./Map.scss";
@@ -7,6 +7,7 @@ import "./Map.scss";
 type Props = {
   planes: PlaneBasic[];
   headings: Record<string, number>;
+  histories: any; // Record<string, [number, number][]>
   selectedId: string | null;
   onSelect: (id: string) => void;
 };
@@ -30,7 +31,7 @@ function FlyToSelected({ planes, selectedId }: { planes: PlaneBasic[]; selectedI
   return null;
 }
 
-export default function Map({ planes, headings, selectedId, onSelect }: Props) {
+export default function Map({ planes, histories, headings, selectedId, onSelect }: Props) {
   const onSelectRef = useRef(onSelect);
   onSelectRef.current = onSelect;
 
@@ -51,6 +52,21 @@ export default function Map({ planes, headings, selectedId, onSelect }: Props) {
         url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
       />
       <FlyToSelected planes={planes} selectedId={selectedId} />
+      {
+        planes.map((p) => {
+          const trail = histories[p.id]
+
+
+          if (!trail || trail.length < 2) return null;
+
+          return (
+              <Polyline
+                key={`trail-${p.id}`}
+                positions={trail}
+              />
+          )
+        })
+      }
       {planes.map((p) =>
         headings[p.id] != null ? (
           <PlaneMarker
